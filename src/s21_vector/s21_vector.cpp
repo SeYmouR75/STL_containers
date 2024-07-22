@@ -1,5 +1,6 @@
 // rename
 #include "s21_vector.h"
+#include <algorithm>
 
 using namespace s21;
 
@@ -73,6 +74,13 @@ void vector<T>::pop_back()
 
     else throw(std::out_of_range("Empty vector"));
 }
+
+template <typename T>
+void vector<T>::swap(vector<T>& other) {
+        std::swap(arr, other.arr);
+        std::swap(m_capacity, other.m_capacity);
+        std::swap(m_size, other.m_size);
+    }
 
 template <typename T>
 typename vector<T>::iterator vector<T>::iterator::operator++(int)
