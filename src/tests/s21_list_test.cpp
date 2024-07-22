@@ -1,15 +1,13 @@
+#include "../s21_list/s21_list.h"
+
 #include <gtest/gtest.h>
 
 #include <list>
 
-#include "../s21_list/s21_list.h"
-
 using namespace s21;
-
 
 TEST(ListTest, ListConstructor) {
   list<int> s21_list{1, 4, 8, 9};
-
 
   EXPECT_EQ(s21_list.size(), 4);
   EXPECT_EQ(s21_list.front(), 1);
@@ -65,7 +63,7 @@ TEST(ListTest, PopBack) {
 
 TEST(ListTest, PopFront) {
   list<double> lst = {1.032, 2.320,    3.0,   4.0,   5.0,
-                           6.0,   7.000043, 8.324, 9.343, 10.0};
+                      6.0,   7.000043, 8.324, 9.343, 10.0};
   EXPECT_EQ(lst.size(), 10U);
   double front = lst.front();
   EXPECT_DOUBLE_EQ(front, 1.032);
@@ -80,7 +78,6 @@ TEST(ListTest, PopFront) {
   EXPECT_EQ(lst.size(), 0U);
 }
 
-
 TEST(ListTest, PushFront) {
   list<int> s21_list_int{1, 4, 8, 9};
 
@@ -89,7 +86,6 @@ TEST(ListTest, PushFront) {
   EXPECT_EQ(s21_list_int.size(), 5U);
   EXPECT_EQ(s21_list_int.front(), 33);
 }
-
 
 TEST(ListTest, Iterator) {
   list<int> lol = {1, 2, 10, 3, 4, 6, 43};
@@ -113,7 +109,6 @@ TEST(ListTest, Iterator) {
   }
 }
 
-
 TEST(ListTest, PushBack) {
   list<int> s21_list_int{1};
 
@@ -121,10 +116,7 @@ TEST(ListTest, PushBack) {
 
   EXPECT_EQ(s21_list_int.size(), 2U);
   EXPECT_EQ(s21_list_int.back(), 33);
-
 }
-
-
 
 TEST(ListTest, Swap) {
   list<int> s21_list_ref_int{1, 4, 8, 9};
@@ -199,17 +191,14 @@ TEST(ListTest, Splice) {
   EXPECT_EQ(*(s21_list_res_int.begin() + 1), 5);
 }
 
-
 TEST(ListTest, EmplaceBack) {
   list<int> our = {1, 2, 7, 8, 9};
   our.emplace_back(4, 5, 6);
   EXPECT_EQ(our.back(), 6);
 }
 
-
 TEST(ListTest, EmplaceFront) {
   list<int> our{1, 2, 7, 8, 9};
   our.emplace_front(4, 5, 6);
   EXPECT_EQ(our.front(), 6);
 }
-
