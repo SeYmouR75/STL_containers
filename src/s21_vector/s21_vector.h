@@ -49,6 +49,9 @@ class vector {
   // destructor
   ~vector() { delete[] arr; }
 
+  //assignment operator overload for moving object
+  vector &operator=(vector &&other) noexcept;
+
   // some method examples
   // size getter
   size_type size() { return m_size; }

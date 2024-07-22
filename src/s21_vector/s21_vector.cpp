@@ -30,6 +30,20 @@ vector<T>::vector(std::initializer_list<value_type> const &items) {
 };
 
 template <typename T>
+vector<T> &vector<T>::operator=(vector<T> &&other) noexcept {
+  if (this != &other) {
+    this->swap(other);
+
+    delete[] other.arr;
+    other.m_size = 0;
+    other.m_capacity = 0;
+    other.arr = nullptr;
+  }
+
+  return *this;
+}
+
+template <typename T>
 T vector<T>::at(size_type i) {
   if (i >= m_size) {
     throw std::out_of_range("Index out of range");
