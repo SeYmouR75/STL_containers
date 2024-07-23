@@ -1,5 +1,5 @@
-#ifndef CPP2_S21_CONTAINERS_1_SRC_MAP_S21_MAP_H_
-#define CPP2_S21_CONTAINERS_1_SRC_MAP_S21_MAP_H_
+#ifndef S21_MAP_H_
+#define S21_MAP_H_
 
 #include "../s21_avl_tree/s21_avl_tree.h"
 
@@ -8,19 +8,19 @@ template <typename K, typename V>
 class map : public Tree<K, V> {
  public:
   map() : Tree<K, V>(){};
-  map(std::initializer_list<typename Tree<K, V>::value_type> const& items)
+  map(std::initializer_list<typename Tree<K, V>::value_type> const &items)
       : Tree<K, V>(items){};
-  map(const map& m) : Tree<K, V>(m){};
-  map(map&& m) noexcept : Tree<K, V>(std::move(m)){};
+  map(const map &m) : Tree<K, V>(m){};
+  map(map &&m) : Tree<K, V>(std::move(m)){};
 
   ~map() = default;
 
-  map& operator=(map&& m) noexcept {
+  map &operator=(map &&m) {
     Tree<K, V>::operator=(std::move(m));
     return *this;
   }
 
-  V& operator[](const K& key) {
+  V &operator[](const K &key) {
     if (!this->contains(key)) {
       std::pair<K, V> el{key, V()};
       std::pair<typename Tree<K, V>::Iterator, bool> res_it = this->insert(el);
@@ -33,18 +33,18 @@ class map : public Tree<K, V> {
     }
   }
 
-  const V& at(const K& key) const {
-    V& res = (V&)fake;
+  const V &at(const K &key) const {
+    V &res = (V &)virtual_;
     auto tmp = this;
-    At_(key, res, (map<K, V>*)tmp);
+    At_(key, res, (map<K, V> *)tmp);
     return res;
   }
   std::pair<typename Tree<K, V>::Iterator, bool> insert(
-      const typename Tree<K, V>::value_type& value) noexcept override {
+      const typename Tree<K, V>::value_type &value) override {
     return Tree<K, V>::insert(value);
   }
-  std::pair<typename Tree<K, V>::Iterator, bool> insert(const K& key,
-                                                        const V& obj) {
+  std::pair<typename Tree<K, V>::Iterator, bool> insert(const K &key,
+                                                        const V &obj) {
     typename Tree<K, V>::Iterator it;
     bool is_inserted = false;
     std::pair<K, V> elem{key, obj};
@@ -53,7 +53,7 @@ class map : public Tree<K, V> {
     return res;
   }
   std::pair<typename Tree<K, V>::Iterator, bool> insert_or_assign(
-      const K& key, const V& obj) {
+      const K &key, const V &obj) {
     std::pair<typename Tree<K, V>::Iterator, bool> res_it;
     res_it = insert(key, obj);
     if (!res_it.second) {
@@ -66,16 +66,16 @@ class map : public Tree<K, V> {
   }
 
  private:
-  V fake = V();
-  void At_(const K& key, V& res, map<K, V>* tr) const {
+  V virtual_ = V();
+  void At_(const K &key, V &res, map<K, V> *tr) const {
     if (!tr->root_ ||
         (!tr->left_ && !tr->right_ && tr->root_->element_.first != key))
       throw std::out_of_range("Key does not exist");
 
     if (key < tr->root_->element_.first) {
-      map<K, V>::At_(key, res, (map<K, V>*)tr->left_);
+      map<K, V>::At_(key, res, (map<K, V> *)tr->left_);
     } else if (key > tr->root_->element_.first) {
-      map<K, V>::At_(key, res, (map<K, V>*)tr->right_);
+      map<K, V>::At_(key, res, (map<K, V> *)tr->right_);
     } else {
       res = tr->root_->element_.second;
     }

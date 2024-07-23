@@ -1,5 +1,5 @@
-#ifndef CPP2_S21_CONTAINERS_1_SRC_SET_S21_SET_H_
-#define CPP2_S21_CONTAINERS_1_SRC_SET_S21_SET_H_
+#ifndef S21_SET_H_
+#define S21_SET_H_
 
 #include "../s21_avl_tree/s21_avl_tree.h"
 
@@ -126,5 +126,4 @@ class set : public Tree<K, K> {
   }
 };
 }  // namespace s21
-
-#endif  // CPP2_S21_CONTAINERS_1_SRC_SET_S21_SET_H_
+#endif
