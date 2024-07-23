@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-std=c++17 -pedantic -lgtest #-Wall -Werror -Wextra
+CFLAGS=-std=c++17 -pedantic -lgtest -Wall -Werror -Wextra
 TEST_DIR=./tests
 BUILD_DIR=./build
 REPORT_DIR=./report
@@ -18,7 +18,7 @@ TARGET=$(BUILD_DIR)/s21_test_containers.exe
 all: $(TARGET)
 
 $(TARGET):
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+	$(CC) $(SRC) -o $(TARGET) $(CFLAGS)
 
 test: rebuild
 	./$(TARGET)

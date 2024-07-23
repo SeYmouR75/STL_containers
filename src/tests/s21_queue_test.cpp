@@ -1,6 +1,7 @@
 #include "../s21_queue/s21_queue.h"
 
 #include <gtest/gtest.h>
+
 #include <queue>
 
 TEST(Queue, Constructor_Default) {

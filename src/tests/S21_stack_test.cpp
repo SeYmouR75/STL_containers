@@ -1,6 +1,7 @@
 #include "../s21_stack/s21_stack.h"
 
 #include <gtest/gtest.h>
+
 #include <stack>
 
 TEST(Stack, Constructor_Default) {

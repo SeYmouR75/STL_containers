@@ -49,13 +49,13 @@ class vector {
   // destructor
   ~vector() { delete[] arr; }
 
-  //assignment operator overload for moving object
+  // assignment operator overload for moving object
   vector &operator=(vector &&other) noexcept;
 
   // some method examples
   // size getter
   size_type size() { return m_size; }
-  const size_type size() const { return m_size; }
+  size_type size() const { return m_size; }
   bool empty() { return m_size == 0; }
 
   // element accessor

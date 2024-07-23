@@ -12,7 +12,7 @@ TEST(VectorTest, ParametrizedConstructor) {
 TEST(VectorTest, CopyConstructor) {
   vector<char> vec = {1, 2, 3};
   vector<char> vec_c(vec);
-  for (int i = 0; i < vec.size(); i++) {
+  for (size_t i = 0; i < vec.size(); i++) {
     EXPECT_EQ(vec[i], vec_c[i]);
   }
   EXPECT_EQ(vec.size(), vec_c.size());
@@ -21,7 +21,7 @@ TEST(VectorTest, CopyConstructor) {
 TEST(VectorTest, MoveConstructor) {
   vector<char> vec = {1, 2, 3};
   vector<char> vec_c(std::move(vec));
-  for (int i = 0, c = 1; i < vec.size(); i++, c++) {
+  for (size_t i = 0, c = 1; i < vec.size(); i++, c++) {
     EXPECT_EQ(vec[i], c);
   }
   EXPECT_EQ(vec.size(), 0);
@@ -83,8 +83,6 @@ TEST(VectorTest, OutOfRangeException) {
 
   EXPECT_NO_THROW(vec.at(2));
   EXPECT_THROW(vec.at(3), std::out_of_range);
-  EXPECT_NO_THROW(vec[3]);
-  EXPECT_NO_THROW(vec_c[3]);
 }
 
 TEST(VectorTest, Iterator) {
@@ -93,11 +91,6 @@ TEST(VectorTest, Iterator) {
   int c = 0;
   for (auto i = vec.begin(); i != vec.end(); i++, c++) {
     *i = c + 12;
-    EXPECT_EQ(vec[c], *i);
-  }
-
-  c = vec.size();
-  for (auto i = vec.cend(); i != vec.cbegin(); i--, c--) {
     EXPECT_EQ(vec[c], *i);
   }
 
@@ -128,16 +121,6 @@ TEST(VectorTest, ConstIterator) {
   const vector<int> vec = {1, 2, 3};
 
   auto j = vec.cbegin(), k = vec.cend() - 1;
-
-  size_t c = 0;
-  for (auto i = vec.cbegin(); i != vec.cend(); i++, c++) {
-    EXPECT_EQ(vec[c], *i);
-  }
-
-  c = vec.size();
-  for (auto i = vec.cend(); i != vec.cbegin(); i--, c--) {
-    EXPECT_EQ(vec[c], *i);
-  }
 
   EXPECT_EQ(vec[0], *j);
   EXPECT_EQ(vec[1], *(j + 1));

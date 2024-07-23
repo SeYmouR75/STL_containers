@@ -32,7 +32,6 @@ class stack {
   void swap(stack &other) { this->container.swap(other.container); }
 
  private:
-
   ContainerT container;
 };
 

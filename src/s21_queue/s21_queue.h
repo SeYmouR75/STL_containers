@@ -7,18 +7,17 @@ namespace s21 {
 template <typename T, typename ContainerT = s21::list<T>>
 class queue {
  public:
- 
   using value_type = typename ContainerT::value_type;
   using reference = typename ContainerT::reference;
   using const_reference = typename ContainerT::const_reference;
   using size_type = typename ContainerT::size_type;
-  
+
   queue() : container() {}
   queue(std::initializer_list<value_type> const &items) : container(items) {}
   queue(const queue &other) : container(other.container) {}
   queue(queue &&other) : container(std::move(other.container)) {}
   ~queue() {}
-  
+
   queue &operator=(queue &&other) {
     this->container = std::move(other.container);
     return *this;
@@ -35,11 +34,9 @@ class queue {
   void swap(queue &other) { this->container.swap(other.container); }
 
  private:
-
   ContainerT container;
-
 };
 
-} // namespace s21
+}  // namespace s21
 
 #endif
